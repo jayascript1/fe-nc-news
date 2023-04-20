@@ -1,0 +1,38 @@
+.Home {
+  background-color: rgb(255, 255, 255);
+}
+
+.article-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  grid-gap: 1rem;
+  padding: 5rem;
+  margin-left: 400px;
+  margin-top: 50px;
+  max-width: 1000px;
+  width: 100%
+}
+
+.article-card {
+  background: #000000;
+  border-radius: 40px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  padding: 1rem;
+}
+
+.article-card img {
+  width: 100%; 
+  height: auto;
+  object-fit: cover;
+  border-radius: 4px;
+}
+
+.article-card h3 {
+  color: white;
+}
+
+.vote-button {
+  font-size: 6rem;
+  padding: 10px 20px;
+  cursor: pointer;
+}

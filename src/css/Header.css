@@ -1,0 +1,25 @@
+.header {
+  position: fixed;
+  top: 0;
+  left: 200px;
+  width: calc(100% - 200px); 
+  height: 100px;
+  background-color: #000000;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+
+.date {
+  font-size: 18px;
+  font-weight: bold;
+  margin-right: 100px;
+}
+
+img {
+  width: 50px;
+  justify-content: center
+}
+
