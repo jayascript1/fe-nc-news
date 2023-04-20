@@ -10,3 +10,7 @@ export const fetchArticles = async () => {
   return response.data.articles;
 };
 
+export const fetchArticleById = async (id) => {
+  const response = await api.get(`/articles/${id}`);
+  return response.data;
+};
