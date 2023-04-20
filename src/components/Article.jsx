@@ -6,21 +6,24 @@ import '../css/Article.css';
 function Article() {
   const { articleId } = useParams();
   const [article, setArticle] = useState('');
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     const getArticle = async () => {
       try {
         const articleData = await fetchArticleById(articleId);
         setArticle(articleData);
+        setIsLoading(false);
       } catch (error) {
         console.error('Error fetching article:', error);
+        setIsLoading(false);
       }
     };
 
     getArticle();
   }, [articleId]);
 
-  if (!article) {
+  if (isLoading) {
     return <div>Loading...</div>;
   }
 
@@ -30,7 +33,8 @@ function Article() {
       <img className='article-image' src={article.article_img_url} alt={article.title} />
       <p>Author: {article.author}</p>
       <p className='date'>Created at: {new Date(article.created_at).toLocaleString()}</p>
-      <p className='article-body'>{article.body}</p>
+      <p>Votes: {article.votes}</p>
+      <p>{article.body}</p>
     </div>
   );
 }
