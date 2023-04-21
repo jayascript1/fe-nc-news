@@ -5,8 +5,9 @@ const api = axios.create({
   baseURL: 'https://north-news.onrender.com/api',
 });
 
-export const fetchArticles = async () => {
+export const fetchArticles = async (topic) => {
   const response = await api.get('/articles', {
+    params: { topic },
   });
   return response.data.articles;
 };
@@ -44,3 +45,14 @@ export const postComment = async (articleId, body, currentUser) => {
   }
 };
 
+export const fetchTopics = async () => {
+  const response = await api.get('/topics');
+  return response.data.topics;
+};
+
+export const fetchArticlesByTopic = async (topic) => {
+  const response = await api.get('/articles', {
+    params: topic ? { topic } : {},
+  });
+  return response.data.articles;
+};
