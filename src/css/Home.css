@@ -2,6 +2,9 @@
   background-color: rgb(255, 255, 255);
 }
 
+.logins {
+  margin-top: 100px;
+}
 .article-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
@@ -35,4 +38,13 @@
   font-size: 6rem;
   padding: 10px 20px;
   cursor: pointer;
+}
+
+@media (max-width: 767px) {
+  .article-grid {
+    padding: 1rem;
+    margin-left: 0;
+    margin-top: 200px;
+    grid-template-columns: 1fr;
+  }
 }

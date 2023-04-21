@@ -1,10 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { fetchArticles } from '../api';
+import { useAuth } from '../contexts/AuthContext';
 import '../css/Home.css';
 
 const Home = () => {
   const [articles, setArticles] = useState([]);
+  const { currentUser, login } = useAuth();
 
   useEffect(() => {
     async function fetchAndSetArticles() {
@@ -14,10 +16,19 @@ const Home = () => {
   
     fetchAndSetArticles();
   }, []);
-  
+
+  const handleLogin = (username) => {
+    login(username);
+  };
 
   return (
     <div className="Home">
+      <div className='logins'>
+        <button onClick={() => handleLogin('cooljmessy')}>Login as cooljmessy</button>
+        <button onClick={() => handleLogin('weegembump')}>Login as weegembump</button>
+        <button onClick={() => handleLogin('happyamy2016')}>Login as happyamy2016</button>
+        {currentUser && <p>Logged in as: {currentUser.username}</p>}
+      </div>
       <div className="article-grid">
         {articles.map((article) => (
           <Link key={article.article_id} to={`/articles/${article.article_id}`}>

@@ -37,7 +37,6 @@ const Header = () => {
         <button className="header_search-button">Search</button>
       </div>
       <div className="header_user_logo">
-        {/* Replace with your logo */}
         <img className='user_icon' src={userIcon} alt="User Logo" />
       </div>
     </header>

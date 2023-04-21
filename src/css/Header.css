@@ -23,3 +23,15 @@ img {
   justify-content: center
 }
 
+
+@media (max-width: 767px) {
+  .header {
+    top: 0;
+    left: 0;
+    width: 100%;
+  }
+
+  .date {
+    display: none;
+  }
+}

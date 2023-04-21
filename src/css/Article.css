@@ -1,8 +1,21 @@
+.article-title {
+  width:auto;
+  margin-top: 150px
+}
+
 .article-image {
-  width:auto
+  width:auto;
+  margin-top: 50px
 }
 
 .article-body {
  margin-left: 650px;
  width: 300px;
+}
+
+@media (max-width: 767px) {
+  .article-body {
+    margin-left: 0;
+    width: 100%;
+  }
 }
