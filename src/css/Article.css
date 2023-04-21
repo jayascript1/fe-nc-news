@@ -3,6 +3,14 @@
 }
 
 .article-body {
- margin-left: 600px;
- width: 400px;
+ margin-left: 650px;
+ width: 300px;
+}
+
+.loading-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  width: 100%;
 }

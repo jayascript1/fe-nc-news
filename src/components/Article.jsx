@@ -17,7 +17,6 @@ function Article() {
         setArticle(articleData);
         setIsLoading(false);
       } catch (error) {
-        console.error('Error fetching article:', error);
         setIsLoading(false);
       }
     };
@@ -27,7 +26,6 @@ function Article() {
         const commentData = await fetchCommentsById(articleId);
         setComments(commentData);
       } catch (error) {
-        console.error('Error fetching comments:', error);
       }
     };
 
@@ -36,7 +34,8 @@ function Article() {
   }, [articleId]);
 
   if (isLoading) {
-    return <div>Loading...</div>;
+    return <div className="loading-container">
+      <p>Loading...</p></div>;
   }
 
   return (
@@ -47,7 +46,7 @@ function Article() {
       <p>Votes: {article.votes}</p>
       <p className='article-body'>{article.body}</p>
       <CommentList comments={comments} />
-      </div>
+    </div>
   );
 }
 

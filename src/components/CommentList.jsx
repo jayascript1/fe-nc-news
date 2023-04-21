@@ -1,7 +1,14 @@
-import React from 'react';
+import React, { useState } from 'react';
 import '../css/CommentList.css';
 
 function CommentList({ comments }) {
+  const [isLoading, setIsLoading] = useState(true);
+
+  if (isLoading) {
+    return <div className="loading-container">
+      <p>Loading...</p></div>;
+  }
+
   return (
     <div className='comments'>
       {comments.map((comment) => (
