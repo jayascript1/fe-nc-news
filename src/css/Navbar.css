@@ -54,3 +54,19 @@
 .order-change {
   color: white;
 }
+
+
+@media (max-width: 767px) {
+  .navbar {
+    top: 100px;
+    width: 100%;
+    height: auto;
+    padding-top: 1rem;
+  }
+
+  .nav-links {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+  }
+}

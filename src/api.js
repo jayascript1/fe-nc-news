@@ -1,5 +1,6 @@
 import axios from 'axios';
 
+
 const api = axios.create({
   baseURL: 'https://north-news.onrender.com/api',
 });
@@ -27,19 +28,19 @@ export const voteOnArticle = async (id, increment) => {
   return response.data;
 };
 
-export const postComment = async (articleId, body) => {
+export const postComment = async (articleId, body, currentUser) => {
   try {
     const payload = {
       body,
-      username: 'cooljmessy',
+      username: currentUser.username,
       created_at: new Date().toISOString(),
       votes: 0,
     };
-    console.log('Payload:', payload);
     const response = await api.post(`/articles/${articleId}/comments`, payload);
-    return response.data;
+    return response.data.comment;
   } catch (error) {
     console.error('Error posting comment:', error.response.data);
     throw error;
   }
 };
+
