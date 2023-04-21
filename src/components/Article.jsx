@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
-import { fetchArticleById, fetchCommentsById } from '../api';
+import { fetchArticleById, fetchCommentsById, voteOnArticle } from '../api';
 import '../css/Article.css';
 import CommentList from './CommentList';
 
@@ -33,6 +33,16 @@ function Article() {
     getComments();
   }, [articleId]);
 
+  const handleVote = async () => {
+    try {
+      await voteOnArticle(articleId, 1);
+      const updatedArticle = await fetchArticleById(articleId);
+      setArticle(updatedArticle);
+    } catch (error) {
+      console.error('Error voting on article:', error);
+    }
+  };
+
   if (isLoading) {
     return <div className="loading-container">
       <p>Loading...</p></div>;
@@ -44,6 +54,7 @@ function Article() {
       <img className='article-image' src={article.article_img_url} alt={article.title} />
       <p>Author: {article.author}</p>
       <p>Votes: {article.votes}</p>
+      <button onClick={handleVote}>Vote</button>
       <p className='article-body'>{article.body}</p>
       <CommentList comments={comments} />
     </div>

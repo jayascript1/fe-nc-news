@@ -1,8 +1,14 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import '../css/CommentList.css';
 
 function CommentList({ comments }) {
   const [isLoading, setIsLoading] = useState(true);
+
+  useEffect(() => {
+    if (comments.length > 0) {
+      setIsLoading(false);
+    }
+  }, [comments]);
 
   if (isLoading) {
     return <div className="loading-container">
