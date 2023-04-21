@@ -14,3 +14,8 @@ export const fetchArticleById = async (id) => {
   const response = await api.get(`/articles/${id}`);
   return response.data;
 };
+
+export const fetchCommentsById = async (id) => {
+  const response = await api.get(`/articles/${id}/comments`);
+  return response.data.comments;
+};
