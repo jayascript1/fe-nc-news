@@ -19,3 +19,10 @@ export const fetchCommentsById = async (id) => {
   const response = await api.get(`/articles/${id}/comments`);
   return response.data.comments;
 };
+
+export const voteOnArticle = async (id, increment) => {
+  const response = await api.patch(`/articles/${id}`, {
+    inc_votes: increment,
+  });
+  return response.data;
+};
