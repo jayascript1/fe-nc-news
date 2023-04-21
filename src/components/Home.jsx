@@ -1,21 +1,30 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import { fetchArticles } from '../api';
+import { fetchArticles, fetchArticlesByTopic } from '../api';
 import { useAuth } from '../contexts/AuthContext';
 import '../css/Home.css';
 
-const Home = () => {
+const Home = ({ selectedTopic }) => {
   const [articles, setArticles] = useState([]);
   const { currentUser, login } = useAuth();
 
   useEffect(() => {
     async function fetchAndSetArticles() {
-      const fetchedArticles = await fetchArticles();
+      const fetchedArticles = await fetchArticles(selectedTopic);
       setArticles(fetchedArticles);
     }
   
     fetchAndSetArticles();
-  }, []);
+  }, [selectedTopic]);
+
+  useEffect(() => {
+    async function fetchAndSetArticles() {
+      const fetchedArticles = await fetchArticlesByTopic(selectedTopic);
+      setArticles(fetchedArticles);
+    }
+
+    fetchAndSetArticles();
+  }, [selectedTopic]);
 
   const handleLogin = (username) => {
     login(username);
