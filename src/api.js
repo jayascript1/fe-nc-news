@@ -26,3 +26,20 @@ export const voteOnArticle = async (id, increment) => {
   });
   return response.data;
 };
+
+export const postComment = async (articleId, body) => {
+  try {
+    const payload = {
+      body,
+      username: 'cooljmessy',
+      created_at: new Date().toISOString(),
+      votes: 0,
+    };
+    console.log('Payload:', payload);
+    const response = await api.post(`/articles/${articleId}/comments`, payload);
+    return response.data;
+  } catch (error) {
+    console.error('Error posting comment:', error.response.data);
+    throw error;
+  }
+};
