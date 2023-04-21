@@ -17,6 +17,7 @@ function Article() {
   const [message, setMessage] = useState('');
   const [error, setError] = useState('');
   const [isPostingComment, setIsPostingComment] = useState(false);
+  const [postingMessage, setPostingMessage] = useState('');
 
   useEffect(() => {
     const getArticle = async () => {
@@ -80,23 +81,26 @@ function Article() {
       setError('Please log in');
       return;
     }
-  
+
     setIsPostingComment(true);
     setMessage('');
     setError('');
-  
+    setPostingMessage('Posting your comment...');
+
     try {
       const postedComment = await postComment(articleId, newComment, currentUser);
-      setComments([postedComment, ...comments]); 
+      setComments([postedComment, ...comments]);
       setMessage('Comment posted');
       setNewComment('');
       setIsPostingComment(false);
+      setPostingMessage('');
     } catch (err) {
       setMessage('');
       setError('An error occurred while posting the comment. Please try again.');
+      setPostingMessage('')
     }
   };
-  
+
   return (
     <div>
       <h2 className='article-title'>{article.title}</h2>
@@ -114,6 +118,11 @@ function Article() {
         value={newComment}
         onChange={(e) => setNewComment(e.target.value)}
       />
+      {postingMessage && ( // Wrap the conditional rendering in curly braces
+        <p>
+          {postingMessage}
+        </p>
+      )}
       <br />
       <button onClick={handleSubmitComment} disabled={isPostingComment}>
         Submit
