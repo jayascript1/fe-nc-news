@@ -1,25 +1,30 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import { fetchArticles, fetchArticlesByTopic } from '../api';
+import { fetchArticlesByTopic } from '../api';
 import { useAuth } from '../contexts/AuthContext';
 import '../css/Home.css';
 
-const Home = ({ selectedTopic }) => {
+const Home = ({ selectedTopic, sortBy, order }) => {
   const [articles, setArticles] = useState([]);
   const { currentUser, login } = useAuth();
 
   useEffect(() => {
     async function fetchAndSetArticles() {
-      const fetchedArticles = await fetchArticles(selectedTopic);
+      if (sortBy === 'comment_count') {
+        sortBy = 'created_at'
+      }
+      const fetchedArticles = await fetchArticlesByTopic(selectedTopic, sortBy, order);
+      console.log(fetchedArticles)
       setArticles(fetchedArticles);
     }
-  
+
     fetchAndSetArticles();
-  }, [selectedTopic]);
+  }, [selectedTopic, sortBy, order]);
 
   useEffect(() => {
     async function fetchAndSetArticles() {
       const fetchedArticles = await fetchArticlesByTopic(selectedTopic);
+      console.log(fetchedArticles)
       setArticles(fetchedArticles);
     }
 
