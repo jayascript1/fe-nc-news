@@ -30,8 +30,12 @@ img {
     left: 0;
     width: 100%;
   }
+}
 
-  .date {
-    display: none;
+ .date {
+    margin-right: 200px;
   }
+
+.header_search-input{
+  margin-left: 200px;
 }

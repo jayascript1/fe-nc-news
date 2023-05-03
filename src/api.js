@@ -5,12 +5,20 @@ const api = axios.create({
   baseURL: 'https://north-news.onrender.com/api',
 });
 
-export const fetchArticles = async (topic) => {
+export const fetchArticles = async (sort_by, order) => {
   const response = await api.get('/articles', {
-    params: { topic },
+    params: {
+      sort_by: sort_by,
+      order: order,
+    },
   });
   return response.data.articles;
 };
+
+export const fetchCommentCount = async (id) => {
+  const response = await api.get(`articles/${id}`);
+  return response.data.comment_count
+}
 
 export const fetchArticleById = async (id) => {
   const response = await api.get(`/articles/${id}`);
@@ -50,9 +58,15 @@ export const fetchTopics = async () => {
   return response.data.topics;
 };
 
-export const fetchArticlesByTopic = async (topic) => {
+export const fetchArticlesByTopic = async (topic, sortBy, order) => {
   const response = await api.get('/articles', {
-    params: topic ? { topic } : {},
+    params: {
+      topic: topic || undefined,
+      sort_by: sortBy || undefined,
+      order: order || undefined,
+    },
   });
   return response.data.articles;
 };
+
+

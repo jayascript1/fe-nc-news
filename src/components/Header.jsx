@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import '../css/Header.css';
-import userIcon from '../images/userIcon.png'
 
 const Header = () => {
     const [currentDate, setCurrentDate] = useState(new Date())
@@ -24,10 +23,10 @@ const Header = () => {
 
   return (
     <header className="header">
+        <div className="date">{formattedDate}</div>
         <section>
             <h1>NC News</h1>
         </section>
-        <div className="date">{formattedDate}</div>
       <div className="header_search">
         <input
           type="text"
@@ -35,9 +34,6 @@ const Header = () => {
           placeholder="Search for news"
         />
         <button className="header_search-button">Search</button>
-      </div>
-      <div className="header_user_logo">
-        <img className='user_icon' src={userIcon} alt="User Logo" />
       </div>
     </header>
   );
